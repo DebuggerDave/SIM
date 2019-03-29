@@ -1,0 +1,25 @@
+<svg [attr.height]="gameHeight" [attr.width]="gameWidth" >
+  
+  <circle [attr.cx]="xVal[0]" [attr.cy]="yVal[0]" [attr.r]="vertexRadius" stroke="red" /> <!-- Top Left TL #0 -->
+  <circle [attr.cx]="xVal[1]" [attr.cy]="yVal[1]" [attr.r]="vertexRadius" stroke="red" /> <!-- Top Right TR #1 -->
+  <circle [attr.cx]="xVal[2]" [attr.cy]="yVal[2]" [attr.r]="vertexRadius" stroke="red" /> <!-- Right R #2 -->
+  <circle [attr.cx]="xVal[3]" [attr.cy]="yVal[3]" [attr.r]="vertexRadius" stroke="red" /> <!-- Bottom Right BR #3 -->
+  <circle [attr.cx]="xVal[4]" [attr.cy]="yVal[4]" [attr.r]="vertexRadius" stroke="red" /> <!-- Bottom Left BL #4 -->
+  <circle [attr.cx]="xVal[5]" [attr.cy]="yVal[5]" [attr.r]="vertexRadius" stroke="red" /> <!-- Left L #5 -->
+
+  <line [attr.x1]="xVal[0]" [attr.y1]="yVal[0]" [attr.x2]="xVal[1]" [attr.y2]="yVal[1]" style="stroke:rgb(255,0,0);stroke-width:2" /> <!-- TL to TR -->
+  <line [attr.x1]="xVal[0]" [attr.y1]="yVal[0]" [attr.x2]="xVal[2]" [attr.y2]="yVal[2]" style="stroke:rgb(255,0,0);stroke-width:2" /> <!-- TL to R -->
+  <line [attr.x1]="xVal[0]" [attr.y1]="yVal[0]" [attr.x2]="xVal[3]" [attr.y2]="yVal[3]" style="stroke:rgb(255,0,0);stroke-width:2" /> <!-- TL to BR -->
+  <line [attr.x1]="xVal[0]" [attr.y1]="yVal[0]" [attr.x2]="xVal[4]" [attr.y2]="yVal[4]" style="stroke:rgb(255,0,0);stroke-width:2" /> <!-- TL to BL -->
+  <line [attr.x1]="xVal[0]" [attr.y1]="yVal[0]" [attr.x2]="xVal[5]" [attr.y2]="yVal[5]" style="stroke:rgb(255,0,0);stroke-width:2" /> <!-- TL to L -->
+  <line [attr.x1]="xVal[1]" [attr.y1]="yVal[1]" [attr.x2]="xVal[2]" [attr.y2]="yVal[2]" style="stroke:rgb(255,0,0);stroke-width:2" /> <!-- TR to R -->
+  <line [attr.x1]="xVal[1]" [attr.y1]="yVal[1]" [attr.x2]="xVal[3]" [attr.y2]="yVal[3]" style="stroke:rgb(255,0,0);stroke-width:2" /> <!-- TR to BR -->
+  <line [attr.x1]="xVal[1]" [attr.y1]="yVal[1]" [attr.x2]="xVal[4]" [attr.y2]="yVal[4]" style="stroke:rgb(255,0,0);stroke-width:2" /> <!-- TR to BL -->
+  <line [attr.x1]="xVal[1]" [attr.y1]="yVal[1]" [attr.x2]="xVal[5]" [attr.y2]="yVal[5]" style="stroke:rgb(255,0,0);stroke-width:2" /> <!-- TR to L -->
+  <line [attr.x1]="xVal[2]" [attr.y1]="yVal[2]" [attr.x2]="xVal[3]" [attr.y2]="yVal[3]" style="stroke:rgb(255,0,0);stroke-width:2" /> <!-- R to BR -->
+  <line [attr.x1]="xVal[2]" [attr.y1]="yVal[2]" [attr.x2]="xVal[4]" [attr.y2]="yVal[4]" style="stroke:rgb(255,0,0);stroke-width:2" /> <!-- R to BL -->
+  <line [attr.x1]="xVal[2]" [attr.y1]="yVal[2]" [attr.x2]="xVal[5]" [attr.y2]="yVal[5]" style="stroke:rgb(255,0,0);stroke-width:2" /> <!-- R to L -->
+  <line [attr.x1]="xVal[3]" [attr.y1]="yVal[3]" [attr.x2]="xVal[4]" [attr.y2]="yVal[4]" style="stroke:rgb(255,0,0);stroke-width:2" /> <!-- BR to BL -->
+  <line [attr.x1]="xVal[3]" [attr.y1]="yVal[3]" [attr.x2]="xVal[5]" [attr.y2]="yVal[5]" style="stroke:rgb(255,0,0);stroke-width:2" /> <!-- BR to L -->
+  <line [attr.x1]="xVal[4]" [attr.y1]="yVal[4]" [attr.x2]="xVal[5]" [attr.y2]="yVal[5]" style="stroke:rgb(255,0,0);stroke-width:2" /> <!-- BL to L -->
+</svg>
