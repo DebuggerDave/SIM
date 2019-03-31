@@ -1,0 +1,19 @@
+.noP {
+    stroke:rgb(0, 0, 0);
+    stroke-width: 15;
+    stroke-dasharray: 5;
+    stroke-opacity: .1;
+}
+.playing.noP:hover {
+    stroke-dasharray: 0;
+}
+
+.redP {
+    stroke:rgb(255,0,0);
+    stroke-width:5;
+}
+
+.blueP {
+    stroke:rgb(0,0,255);
+    stroke-width:5;
+}
