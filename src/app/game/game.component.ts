@@ -82,9 +82,9 @@ export class GameComponent implements OnInit {
   }
 
   // return css property to define path
-  getPathString(lineNum: string): string {
-    const node1 = this.lineEnum[lineNum].node1;
-    const node2 = this.lineEnum[lineNum].node2;
+  getPathString(lineNum: number): string {
+    const node1 = this.lineEnum[lineNum.toString()].node1;
+    const node2 = this.lineEnum[lineNum.toString()].node2;
     return 'M' + this.xVal[node1] + ' ' + this.yVal[node1] + ' ' + this.xVal[node2] + ' ' + this.yVal[node2];
   }
 
