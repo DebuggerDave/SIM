@@ -1,12 +1,23 @@
+<<<<<<< HEAD
 <div id="heading"><h1>{{gameState}}</h1></div>
 <div id="log"><button>Login</button></div>
 <h1 *ngIf="gameOver && !isPlaying">GAME OVER NOOB</h1>
 <app-game
+=======
+<h2>{{gameState}}</h2>
+<h1 *ngIf="gameOver && !isPlaying">GAME OVER NOOB</h1>
+<button *ngIf="!isPlaying" (click)="gameEvent()">{{gameEventMsg}}</button>
+
+<app-game 
+>>>>>>> ab0fa5cf88d39b8784a91b83f770a2932c0422bd
     (player) = "setTurnMsg($event)"
     (winner) = "setWinnerMsg($event)"
     >
 </app-game>
+<<<<<<< HEAD
 
 <app-leaderboard></app-leaderboard>
 
 <button *ngIf="!isPlaying" (click)="gameEvent()">{{gameEventMsg}}</button>
+=======
+>>>>>>> ab0fa5cf88d39b8784a91b83f770a2932c0422bd
