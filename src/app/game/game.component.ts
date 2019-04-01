@@ -25,7 +25,7 @@ export class GameComponent implements OnInit {
   // used for changing css
   lineOwner: number[] = Array<number>(15).fill(2);
   // describes lines each player has placed, 0 = red, 1 = blue
-  // used for finding trangles
+  // used for finding triangles
   playerLines: number[][] = [[], []];
   isPlaying = false;
   // line numbers, with cooresponding nodes

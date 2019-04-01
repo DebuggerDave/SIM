@@ -1,5 +1,4 @@
 <h2>{{gameState}}</h2>
-<h1 *ngIf="gameOver && !isPlaying">GAME OVER NOOB</h1>
 <button *ngIf="!isPlaying" (click)="gameEvent()">{{gameEventMsg}}</button>
 
 <app-game 
