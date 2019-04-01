@@ -13,6 +13,7 @@ export class GameHUDComponent implements OnInit {
   gameOver = false;
   gameEventMsg = 'Start Game';
   isPlaying = false;
+  waiting = true;
 
   constructor() { }
 
