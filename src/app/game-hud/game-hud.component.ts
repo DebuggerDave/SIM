@@ -12,6 +12,7 @@ export class GameHUDComponent implements OnInit {
   gameState = 'Press "Start Game" to play!';
   gameEventMsg = 'Start Game';
   isPlaying = false;
+  waiting = true;
 
   constructor() { }
 
