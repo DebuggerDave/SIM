@@ -59,7 +59,7 @@ export class GameComponent implements OnInit {
     this.gameWidth = this.gameSize + 2 * this.nodeRadius;
     this.gameHeight = this.gameSize + 2 * this.nodeRadius;
 
-    this.xVal[0] = Math.cos(Math.PI / 3) * ((this.gameHeight / 2) - this.nodeRadius) + this.nodeRadius;
+    this.xVal[0] = (((this.gameHeight / 2) - this.nodeRadius) / Math.tan(Math.PI / 3)) + this.nodeRadius;
     this.xVal[1] = this.gameWidth - this.xVal[0];
     this.xVal[2] = this.gameWidth - this.nodeRadius;
     this.xVal[3] = this.xVal[1];
