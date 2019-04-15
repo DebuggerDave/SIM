@@ -8,6 +8,7 @@ import { GameHUDComponent } from './game-hud/game-hud.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { RegistrationComponent } from './registration/registration.component';
     GameHUDComponent,
     LeaderboardComponent,
     HomepageComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
