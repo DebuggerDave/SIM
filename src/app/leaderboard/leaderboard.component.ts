@@ -13,6 +13,11 @@ export class LeaderboardComponent implements OnInit {
     {place: 4, name: "Taylor", wins: 1},
     {place: 5, name: "Spencer", wins: -1000001}
   ];
+  selected: Data = new Data();
+
+  displayPlayer(player: Data) {
+    this.selected = player;
+  }
   constructor() { }
 
   ngOnInit() {
