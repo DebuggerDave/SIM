@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { USERS } from '../../db';
 
 @Component({
   selector: 'app-leaderboard',
@@ -6,27 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./leaderboard.component.css']
 })
 export class LeaderboardComponent implements OnInit {
-  testData: Data[] = [
-    {place: 1, name: "Steve", wins: 1000},
-    {place: 2, name: "David", wins: 100},
-    {place: 3, name: "Will", wins: 10},
-    {place: 4, name: "Taylor", wins: 1},
-    {place: 5, name: "Spencer", wins: -1000001}
-  ];
-  selected: Data = new Data();
+  users = USERS;
 
-  displayPlayer(player: Data) {
-    this.selected = player;
+  displayPlayer(player) {
+
   }
-  constructor() { }
+  constructor() {
+    this.users.forEach((user) => {
+      user.rank = (user.wins)/(user.wins+user.losses);
+    });
+    this.users.sort((a, b) => a.rank > b.rank ? -1 : a.rank < b.rank ? 1 : 0)
+  }
 
   ngOnInit() {
   }
 
-}
-
-class Data {
-  place: number;
-  name: string;
-  wins: number;
 }

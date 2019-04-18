@@ -2,12 +2,12 @@
 <div>
   <img src="../../assets/logo.png">
   <form>
-    <input name="username" type="text" placeholder="Username" autocomplete="off"/>
+    <input name="username" type="text" placeholder="Username" autocomplete="off" [formControl]="username"/>
     <br />
-    <input name="pass" type="password" placeholder="Password" autocomplete="off"/>
+    <input name="pass" type="password" placeholder="Password" autocomplete="off" [formControl]="password"/>
     <br />
     <br />
-    <button routerLink="/game">Login</button>
+    <button (click)="login()">Login</button>
   </form>
   <br />
   <p>

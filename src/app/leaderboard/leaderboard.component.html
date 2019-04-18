@@ -3,10 +3,12 @@
     <th>Ranking</th>
     <th>Player</th>
     <th>Wins</th>
+    <th>Total Games</th>
   </thead>
-  <tr *ngFor="let i of testData" onclick="">
-    <td>{{i.place}}</td>
-    <td>{{i.name}}</td>
-    <td>{{i.wins}}</td>
+  <tr *ngFor="let u of users; let i = index" onclick="">
+    <td>{{i+1}}</td>
+    <td>{{u.name}}</td>
+    <td>{{u.wins}}</td>
+    <td>{{u.wins + u.losses}}</td>
   </tr>
 </table>

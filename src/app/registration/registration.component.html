@@ -1,3 +1,21 @@
-<p>
-  registration works!
-</p>
+<br />
+<div>
+  <img src="../../assets/logo.png">
+  <form>
+    <input type="text" placeholder="Name" autocomplete="off" [formControl]="name"/>
+    <br />
+    <input type="text" placeholder="Username" autocomplete="off" [formControl]="username"/>
+    <br />
+    <input type="password" placeholder="Password" autocomplete="off" [formControl]="password"/>
+    <br />
+    <br />
+    <button (click)="register()">Register</button>
+  </form>
+  <br />
+  <br />
+  <p>
+    <a routerLink="/login" routerLinkActive="active">Already have an account? Log In.</a>
+    &nbsp; &nbsp; &nbsp; &nbsp;
+    <a>Forgot Password? Reset.</a>
+  </p>
+</div>
