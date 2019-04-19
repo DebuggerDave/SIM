@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { USERS } from '../../db';
 import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
+import { Globals } from '../../global';
 
 @Component({
   selector: 'app-homepage',
@@ -20,6 +21,8 @@ export class HomepageComponent implements OnInit {
   login() {
     this.users.forEach((user)=>{
       if(this.username.value == user.username && this.password.value == user.password) {
+        Globals.user = user;
+        Globals.loggedIn = true;
         this.router.navigate(['/game']);
       }
     });

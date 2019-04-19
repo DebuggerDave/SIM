@@ -1,5 +1,6 @@
 <div id="heading"><h1>{{gameState}}</h1></div>
-<div id="log"><button routerLink="/login">Login</button></div>
+<div id="log" *ngIf="loggedIn"><button routerLink="/profile/{{user.id}}">{{user.name}}'s Profile</button></div>
+<div id="log" *ngIf="!loggedIn"><button routerLink="/login">Login</button></div>
 <app-game
     (player) = "setTurnMsg($event)"
     (winner) = "setWinnerMsg($event)"

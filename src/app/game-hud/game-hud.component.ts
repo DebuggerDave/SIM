@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GameComponent } from '../game/game.component';
+import { Globals } from '../../global';
 
 @Component({
   selector: 'app-game-hud',
@@ -13,8 +14,11 @@ export class GameHUDComponent implements OnInit {
   gameEventMsg = 'Start Game';
   isPlaying = false;
   waiting = true;
+  user = Globals.user;
+  loggedIn = Globals.loggedIn;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
