@@ -1,0 +1,51 @@
+div {
+  width: 45%;
+  height: 450px;
+  margin: auto;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 4px 4px 4px grey, -4px -4px 4px grey;
+}
+form {
+  width: 40%;
+  margin: auto;
+  border-left: 4px solid white;
+  height: 100px;
+}
+form:hover {
+  border-left: 4px solid light-blue;
+}
+input {
+  font-size: 1.2em;
+  padding: 5px;
+  border: none;
+  border-bottom: 2px solid lightgrey;
+  transition: .4s ease-in;
+  -webkit-transition: .4s ease-in;
+}
+button {
+  padding: 10px 20px 10px 20px;
+  font-weight: bold;
+  border: 2px solid blue;
+  background: white;
+  -webkit-transition: .4s ease-in;
+}
+button:hover {
+  border: 2px solid blue;
+  background: blue;
+  color: white;
+}
+button:focus {
+  outline: none;
+}
+input:focus {
+  outline: none;
+  border-bottom: 2px solid blue;
+}
+a, a:visited {
+  text-decoration: none;
+  color: blue;
+}
+a:hover, a:visited:hover {
+  color: #303030;
+}

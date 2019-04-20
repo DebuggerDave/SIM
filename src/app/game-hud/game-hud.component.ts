@@ -10,15 +10,16 @@ export class GameHUDComponent implements OnInit {
   @ViewChild(GameComponent) private game: GameComponent;
 
   gameState = 'Press "Start Game" to play!';
-  gameOver = false;
   gameEventMsg = 'Start Game';
   isPlaying = false;
+  waiting = true;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  // button click event, start game. Red starts first
   gameEvent() {
     this.isPlaying = true;
     this.game.restart();
@@ -26,10 +27,12 @@ export class GameHUDComponent implements OnInit {
     this.gameState = 'Red\'s Turn';
   }
 
+  // emitted from child, current player's turn
   setTurnMsg(player: string): void {
     this.gameState = player + '\'s Turn';
   }
 
+  // emitted from child, winner of game, means game ended
   setWinnerMsg(winner: string): void {
     this.isPlaying = false;
     this.gameState = winner + ' Player Wins! Press the button to play again';

@@ -1,0 +1,49 @@
+app-game {
+  float: left;
+  display: block;
+  width: 66%;
+}
+app-leaderboard {
+  padding-left: 25px;
+  border-left: 4px solid black;
+  float: left;
+  display: block;
+  width: 30%;
+  height: 550px;
+}
+
+div#heading {
+  width: 66%;
+  height: 1.5em;
+  float: left;
+  display: block;
+}
+div#heading h1 {
+  font-size: 1.5em;
+  padding-left: 120px;
+}
+div#log {
+  width: 30%;
+  height: 75px;
+  padding-top: 5px;
+  float: left;
+  display: block;
+  margin: auto;
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px 10px 20px;
+  font-weight: bold;
+  border: 2px solid blue;
+  background: white;
+  -webkit-transition: .4s ease-in;
+}
+button#start {
+  margin-left: 205px;
+}
+button:hover {
+  border: 2px solid blue;
+  background: blue;
+  color: white;
+}
