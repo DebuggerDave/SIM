@@ -29,7 +29,7 @@ export class MatchmakingService {
     //Changes the looking for game (lfg) field to 1, indicating that they are looking for a game.
     playerToChange.lfg = 1
     //Posts the newly changed object.
-    this.http.post(this.url + userURI, playerToChange)
+    this.http.put(this.url + userURI, playerToChange)
   }
   //This function is called when a player presses the "search for a game" button.
   setupMatch(myURI: string){
@@ -97,21 +97,25 @@ export class MatchmakingService {
   
 }
 }
-export interface Game{
-    player_one:string,
-    player_two:string,
-    game_state:number[],
-    resource_uri: string
-}
 export interface UserResponse{
   meta: {},
   objects: User[]
 }
-export interface User{
-  email: string,
-  id: number,
-  password: string,
+export interface Game{
+  player_one:string,
+  player_two:string,
+  line_owner:number[],
   resource_uri: string,
-  username: string,
-  lfg: number
+  current_player: string,
+  player_one_lines:number[],
+  player_two_lines:number[],
+}
+
+export interface User{
+email: string,
+id: number,
+password: string,
+resource_uri: string,
+username: string,
+lfg: number
 }
