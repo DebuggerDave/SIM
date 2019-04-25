@@ -96,6 +96,7 @@ export class MatchmakingService {
 
   
 }
+}
 export interface Game{
     player_one:string,
     player_two:string,
