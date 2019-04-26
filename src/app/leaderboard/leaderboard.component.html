@@ -5,7 +5,7 @@
     <th>Wins</th>
     <th>Total Games</th>
   </thead>
-  <tr *ngFor="let u of users; let i = index" onclick="">
+  <tr *ngFor="let u of users; let i = index" routerLink="">
     <td>{{i+1}}</td>
     <td>{{u.name}}</td>
     <td>{{u.wins}}</td>
