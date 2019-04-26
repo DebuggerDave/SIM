@@ -12,7 +12,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ProfileComponent } from './profile/profile.component';
-import { Globals } from '../global';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import { Globals } from '../global';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [Globals],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
