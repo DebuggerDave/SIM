@@ -21,8 +21,8 @@ export class HomepageComponent implements OnInit {
   login() {
     this.users.forEach((user)=>{
       if(this.username.value == user.username && this.password.value == user.password) {
-        //service.setUser(user);
-        //service.setLoggedIn(true);
+        this.service.setUser(user);
+        this.service.setLoggedIn(true);
         this.router.navigate(['/game']);
       }
     });

@@ -1,3 +1,27 @@
+<br />
 <div>
-  <img src="../../assets/profile.jpeg"
+  <img src="../../assets/profile.jpeg" />
+  <h2>{{user.name}} | {{user.rank}}</h2>
+  <table>
+    <thead>
+      <th colspan="2">Stats</th>
+    </thead>
+    <tr>
+      <td>Wins</td>
+      <td>{{user.wins}}</td>
+    </tr>
+    <tr>
+      <td>Losses</td>
+      <td>{{user.losses}}</td>
+    </tr>
+    <tr>
+      <td>Games Played</td>
+      <td>{{user.wins + user.losses}}</td>
+    </tr>
+    <tr>
+      <td>Win/Loss Ratio</td>
+      <td>{{user.wins / user.losses}}</td>
+    </tr>
+  </table>
+  <button routerLink="/game">Return to Game</button>
 </div>

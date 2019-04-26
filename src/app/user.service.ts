@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
 export class UserService {
   user: any = {id: 0,
           name: "",
