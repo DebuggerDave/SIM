@@ -1,10 +1,12 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-
+import { User, Game } from '../models';
+import { GameplayService } from '../gameplay.service';
 @Component({
   selector: 'app-game',
   templateUrl: './game.component.html',
-  styleUrls: ['./game.component.css']
+  styleUrls: ['./game.component.css'],
 })
+
 export class GameComponent implements OnInit {
   @Output() player = new EventEmitter<string>();
   @Output() winner = new EventEmitter<string>();
@@ -15,6 +17,8 @@ export class GameComponent implements OnInit {
 
   // don't set these
   currentPlayer = 0; // 0 = red, 1 = blue
+  currentPlayerUri = JSON.parse(localStorage.getItem('currentUser')).resource_uri;
+  currentGameUri;
   gameWidth = 0;
   gameHeight = 0;
   // x locations of nodes
@@ -52,7 +56,7 @@ export class GameComponent implements OnInit {
     2: 'None'
   });
 
-  constructor() { }
+  constructor(private gameplay: GameplayService) { }
 
   // define node locations and game size
   ngOnInit() {
@@ -79,6 +83,9 @@ export class GameComponent implements OnInit {
     this.currentPlayer = 0;
     this.lineOwner.fill(2);
     this.playerLines  = [[], []];
+    this.delay(1000).then(() => {this.currentGameUri = JSON.parse(localStorage.getItem('currentGame'));console.log(this.currentGameUri)});
+    
+
   }
 
   // return css property to define path
@@ -110,6 +117,8 @@ export class GameComponent implements OnInit {
     this.currentPlayer = (this.currentPlayer + 1) % 2;
     this.player.emit(this.playerEnum[this.currentPlayer]);
 
+    this.gameplay.saveGameData(this.currentGameUri,this.currentPlayerUri, this.lineOwner,this.playerLines);
+    this.waitForTurn()
   }
 
   // bad algorithm to search for triangles in game
@@ -147,5 +156,36 @@ export class GameComponent implements OnInit {
 
     return gameOver;
   }
+  waitForTurn(){
+    let myTurnYet = false;
+    let intervalObject;
+    console.log("Waiting for your turn")
+    
 
+    //todo add while loop
+    intervalObject = setInterval(() => {
+      this.gameplay.getGameData(this.currentGameUri).subscribe(res =>{
+        
+        if (res.current_player==this.currentPlayerUri){
+          console.log("It's now your turn")
+          clearInterval(intervalObject)
+        }
+      })
+    }, 1000); 
+
+    //update local lineOwner and playerLines from opponents move
+    this.gameplay.getGameData(this.currentGameUri).subscribe(res =>{
+      
+      
+      this.lineOwner=JSON.parse(res.line_owner)
+      this.playerLines = [JSON.parse(res.player_one_lines),JSON.parse(res.player_two_lines)];
+      
+      console.log("Got game data", res);
+    });
+  }
+  
+  //simple function to delay a call for ms milliseconds
+  async delay(ms: number){
+    await new Promise(resolve => setTimeout(() => resolve(), ms))
+  }
 }
