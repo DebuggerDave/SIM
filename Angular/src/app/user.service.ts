@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators'
 export class UserService {
   private url = "http://localhost:8000/api/user/"
   loggedIn: boolean = false;
+  user: User = null;
 
   constructor(private http:HttpClient) { }
 
@@ -32,7 +33,7 @@ export class UserService {
   findUserByUsername(username:string){
     let userToReturn:User;
     return this.http.get<UserResponse>(this.url + "?username="+username).pipe(map(response => response.objects[0]))
-    
+
   }
 
   getUser(): any {return this.user;}

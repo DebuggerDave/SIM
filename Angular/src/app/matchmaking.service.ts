@@ -12,9 +12,9 @@ import { User, Game} from './models';
 })
 export class MatchmakingService {
   private url = "http://localhost:8000/api/" // URL to game server.
-  
+
   constructor(private http: HttpClient,private userService:UserService,private gameplay:GameplayService ) { }
-  
+
   //This function is called when a player presses the "search for a game" button.
   setupMatch(myURI: string){
     //Looks for an existing player who's lfg is set to 1.
@@ -29,7 +29,7 @@ export class MatchmakingService {
         //Trigger gameplay service with matchURI
         //NEED TO IMPLEMENT PASSING OFF
       }
-        
+
       //If there are other players searching for a game, the player is matched with the first one that is returned from a query.
       else{
         //Creates an empty match object.
@@ -51,17 +51,17 @@ export class MatchmakingService {
 
     //Creates match with empty game-state.
     var body:Game = {
-      "player_one": user1,
-      "player_two": user2,
-      "line_owner": [],
-      "player_one_lines":[],
-      "player_two_lines":[],
-      "current_player":user1,
-      "resource_uri":""
+      player_one: user1,
+      player_two: user2,
+      line_owner: [],
+      player_one_lines: [],
+      player_two_lines: [],
+      current_player: user1,
+      resource_uri: ""
     }
 
     //Posts new match. Saves resource_uri to matchURI var.
-    return this.http.post<Game>(this.url+"game/", body).pipe(map(res => res.resource_uri))    
+    return this.http.post<Game>(this.url+"game/", body).pipe(map(res => res.resource_uri))
   }
 
   getMatch(searchByFilter: string){
@@ -91,8 +91,7 @@ export class MatchmakingService {
     let gameResourceURI: string;
     this.http.get<Game>(this.url + "games/?player_two=" + myURI).subscribe(game => {
       gameResourceURI = game.resource_uri
-    }) 
+    })
     return gameResourceURI
   }
 }
-
