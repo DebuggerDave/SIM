@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { GameComponent } from '../game/game.component';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-game-hud',
@@ -13,8 +14,14 @@ export class GameHUDComponent implements OnInit {
   gameEventMsg = 'Start Game';
   isPlaying = false;
   waiting = true;
+  user;
+  loggedIn;
 
-  constructor() { }
+  constructor(private service: UserService) {
+    this.user = service.getUser();
+    this.loggedIn = service.getLoggedIn();
+    console.log(this.user + this.loggedIn);
+  }
 
   ngOnInit() {
   }

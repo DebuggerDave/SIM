@@ -5,8 +5,8 @@
     <th>Wins</th>
     <th>Total Games</th>
   </thead>
-  <tr *ngFor="let u of users; let i = index" onclick="">
-    <td>{{i+1}}</td>
+  <tr *ngFor="let u of users" routerLink="/profile/{{u.id}}">
+    <td>{{u.rank}}</td>
     <td>{{u.name}}</td>
     <td>{{u.wins}}</td>
     <td>{{u.wins + u.losses}}</td>

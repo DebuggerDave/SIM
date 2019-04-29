@@ -12,6 +12,7 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ProfileComponent } from './profile/profile.component';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { ProfileComponent } from './profile/profile.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
