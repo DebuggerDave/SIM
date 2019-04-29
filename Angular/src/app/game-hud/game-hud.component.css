@@ -38,6 +38,7 @@ button {
   border: 2px solid blue;
   background: white;
   -webkit-transition: .4s ease-in;
+  margin-left: 100px;
 }
 button#start {
   margin-left: 205px;
@@ -46,4 +47,7 @@ button:hover {
   border: 2px solid blue;
   background: blue;
   color: white;
+}
+button#user {
+  margin-left: 100px;
 }

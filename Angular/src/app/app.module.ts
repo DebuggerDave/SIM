@@ -34,7 +34,7 @@ import { UserService } from './user.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [GameplayService, MatchmakingService],
+  providers: [GameplayService, MatchmakingService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

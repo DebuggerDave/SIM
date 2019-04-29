@@ -53,7 +53,7 @@ export class GameComponent implements OnInit {
   playerEnum = Object.freeze({
     0: 'Red',
     1: 'Blue',
-    3: 'None'
+    2: 'None'
   });
 
   constructor(private gameplay: GameplayService) { }

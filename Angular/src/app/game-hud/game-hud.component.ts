@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { GameComponent } from '../game/game.component';
 import { MatchmakingService } from '../matchmaking.service';
 import { User } from '../models';
+import { UserService } from '../user.service';
 @Component({
   selector: 'app-game-hud',
   templateUrl: './game-hud.component.html',
