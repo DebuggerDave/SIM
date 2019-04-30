@@ -117,8 +117,8 @@ export class GameComponent implements OnInit {
     this.currentPlayer = (this.currentPlayer + 1) % 2;
     this.player.emit(this.playerEnum[this.currentPlayer]);
 
-    this.gameplay.saveGameData(this.currentGameUri,this.currentPlayerUri, this.lineOwner,this.playerLines);
-    this.waitForTurn()
+    // this.gameplay.saveGameData(this.currentGameUri,this.currentPlayerUri, this.lineOwner,this.playerLines);
+    // this.waitForTurn()
   }
 
   // bad algorithm to search for triangles in game
