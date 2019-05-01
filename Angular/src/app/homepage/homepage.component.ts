@@ -32,8 +32,8 @@ export class HomepageComponent implements OnInit {
         //if so go to game page
         this.router.navigate(['/game']);
         //and store user as the current user
-        localStorage.setItem('currentUser',JSON.stringify(userToCheckAgainst))
         localStorage.setItem('loggedIn',JSON.stringify(true))
+        localStorage.setItem('currentUser',JSON.stringify(userToCheckAgainst))
       }
     });
   }
