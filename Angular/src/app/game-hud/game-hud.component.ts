@@ -3,6 +3,7 @@ import { GameComponent } from '../game/game.component';
 import { MatchmakingService } from '../matchmaking.service';
 import { User } from '../models';
 import { UserService } from '../user.service';
+import { GameplayService } from '../gameplay.service';
 @Component({
   selector: 'app-game-hud',
   templateUrl: './game-hud.component.html',
@@ -15,22 +16,44 @@ export class GameHUDComponent implements OnInit {
   gameEventMsg = 'Start Game';
   isPlaying = false;
   waiting = true;
-  currentPlayer:User;
+
 
   
 
-  constructor(private matchmaking:MatchmakingService) { }
+  constructor(private matchmaking:MatchmakingService, private gameplay:GameplayService,private userService:UserService) { }
 
   ngOnInit() {
-    this.currentPlayer= JSON.parse(localStorage.getItem('currentUser'));
   }
 
   // button click event, start game. Red starts first
   gameEvent() {
     this.isPlaying = true;
-    console.log(this.currentPlayer)
+    console.log(this.userService.user)
 
-    this.matchmaking.setupMatch(this.currentPlayer.resource_uri)
+    this.matchmaking.setupMatch(this.userService.user.resource_uri).subscribe(uri => {
+      uri.then(uri => {
+        console.log("Current match URI:",<string>uri)
+        if (<string>uri!=undefined){
+          this.gameplay.currentGame=uri;
+          this.matchmaking.getMatch(<string>uri).subscribe(game => {
+            if (game.player_one == this.userService.user.resource_uri){
+            console.log("You are player one")
+            this.game.isMyTurn=true;
+            this.game.playerEnum[0]="You're up! Red"
+            }
+            else{
+              console.log("You are player two")
+              this.game.playerEnum[1]="You're up! Blue"
+              
+            }
+          })
+          
+          
+        }
+      })
+    })
+    //this.game.waitForTurn();
+
     this.game.restart();
     this.gameEventMsg = 'Play Again?';
     this.gameState = 'Red\'s Turn';

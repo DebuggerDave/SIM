@@ -8,8 +8,8 @@ class SimUserResource(ModelResource):
         queryset = SimUser.objects.all()
         resource_name = 'user'
         authorization = Authorization()
-        fields=['id','username','password','email']
-        filtering={'username':ALL,'email':ALL,'id':ALL}
+        #fields=['id','username','password','email']
+        filtering={'username':ALL,'email':ALL,'id':ALL,'lfg':ALL,'resource_api':ALL}
         
 class GameResource(ModelResource):
     #player_one = fields.ForeignKey(SimUserResource,'SimUser')
@@ -20,3 +20,5 @@ class GameResource(ModelResource):
         resource_name = 'game'
         authorization = Authorization()
         always_return_data = True
+        filtering={'player_one':ALL,'player_two':ALL,'resource_api':ALL}
+        

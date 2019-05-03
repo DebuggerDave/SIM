@@ -2,6 +2,11 @@ export interface UserResponse{
   meta: {},
   objects: User[]
 }
+export interface GameResponse{
+  meta: {},
+  objects: Game[]
+}
+
 export interface Game{
   player_one:string,
   player_two:string,

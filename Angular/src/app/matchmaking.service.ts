@@ -2,47 +2,41 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, interval} from 'rxjs';
 import { map } from 'rxjs/operators';
-import {pipe } from 'rxjs';
+import {pipe, of} from 'rxjs';
 import { UserService } from "./user.service";
 import { GameplayService } from "./gameplay.service";
-import { User, Game} from './models';
+import { User, Game, GameResponse} from './models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MatchmakingService {
-  private url = "http://localhost:8000/api/" // URL to game server.
-  
+  private url = "http://localhost:8000" // URL to game server.
+  currentGame:string;
+
   constructor(private http: HttpClient,private userService:UserService,private gameplay:GameplayService ) { }
   
   //This function is called when a player presses the "search for a game" button.
   setupMatch(myURI: string){
     //Looks for an existing player who's lfg is set to 1.
-    this.userService.findOpponent().subscribe(opponentUri => {
+    return this.userService.findOpponent(myURI).pipe(map(opponentUri => {
       //If there are no players searching for a game, we set their LFG flag to 1.
       console.log("Initiated Setup")
-      if(opponentUri === null){
+      if(opponentUri == undefined){
         console.log("Couldn't find opponent")
-        this.userService.setLFG(myURI)
-        //then wait for game
-        var matchURI = this.waitForGame(myURI)
-        //Trigger gameplay service with matchURI
-        //NEED TO IMPLEMENT PASSING OFF
+        this.userService.setLFG(myURI,1)
+        //then wait for game and once one if found, return it
+        return (this.waitForGame(myURI))
       }
         
-      //If there are other players searching for a game, the player is matched with the first one that is returned from a query.
+      //if it does find a player, create a match with them
       else{
-        //Creates an empty match object.
         console.log("Found opponent")
-        let matchURI;
-        this.createMatch(myURI, opponentUri).subscribe(res => {
-          matchURI=res;
-          localStorage.setItem('currentGame',JSON.stringify(res));
-        })
-        //Trigger gameplay service with matchURI
+        //and return the uri of the game we just created
+        return this.createMatch(myURI, opponentUri).toPromise()
 
       }
-    })
+    }))
 
   }
   //Creates Match and returns its URI.
@@ -53,46 +47,75 @@ export class MatchmakingService {
     var body:Game = {
       "player_one": user1,
       "player_two": user2,
-      "line_owner": [],
-      "player_one_lines":[],
-      "player_two_lines":[],
+      "line_owner": "",
+      "player_one_lines":"",
+      "player_two_lines":"",
       "current_player":user1,
       "resource_uri":""
     }
-
-    //Posts new match. Saves resource_uri to matchURI var.
-    return this.http.post<Game>(this.url+"game/", body).pipe(map(res => res.resource_uri))    
+    this.userService.setLFG(user1,0)
+    this.userService.setLFG(user2,0)
+    //return observable of posted game's uri (pretty sure this is a cold observable?)
+    // return this.http.post<Game>(this.url+"game/", body).pipe(map(res => res.resource_uri))  
+    return this.http.post<Game>(this.url+"/api/game/", body).pipe(map((res =>res.resource_uri))); 
+ 
   }
 
   getMatch(searchByFilter: string){
-    let game:Game;
-    this.http.get<Game>(this.url + searchByFilter).subscribe(res => game = res)
-    return game;
+    return this.http.get<Game>(this.url + searchByFilter)
   }
 
   //This function will issue a get request every 2 seconds, searching whether a game has been created with myURI. If this is found, it returns the match's uri.
-  waitForGame(myURI: string){
+  async waitForGame(myURI: string){
     let game_uri:string = "";
     let intervalObject: any;
     console.log("Waiting for game")
 
-    intervalObject = setInterval(() => {
-       game_uri = this.searchForGame(myURI);
-       if(game_uri !== ""){
-         console.log("Found game")
-         clearInterval(intervalObject)
-       }
-    }, 2000);
-    return game_uri;
+    // intervalObject = setInterval(() => {
+    //    game_uri = this.searchForGame(myURI);
+    //    if(game_uri !== ""&&game_uri!==undefined){
+    //      console.log("Found game")
+    //      clearInterval(intervalObject)
+    //      return game_uri;
+    //    }
+    //    else{ console.log("Still Searching")}
+    // }, 2000);
+    // if ( game_uri !== ""&&game_uri!==undefined){
+    //   console.log("Found game")
+    //      return game_uri;
+    //}
+    let uriPromise = new Promise((resolve, reject) =>{
+        // this.searchForGame(myURI)
+        //   .toPromise()
+        //   .then(
+        //     game =>{
+        //       return game.resource_uri;
+        //       console.log("Found Game!!")
+        //       resolve();
+        //     })
+
+        intervalObject = setInterval(() => {
+          this.searchForGame(myURI).subscribe(game =>{
+            if(game!=undefined && game.resource_uri !== ""&&game.resource_uri!==undefined){
+              console.log("Found game",game.resource_uri)
+
+              clearInterval(intervalObject)
+              resolve(game.resource_uri);
+            }
+            else{ console.log("Still Searching")}
+            })
+          
+        }, 2000);
+    })
+    return uriPromise;
+    
   }
 
   //This is a helper function that searches whether a game has been created with the given players URI as player_two.
-  searchForGame(myURI: string):string{
+  searchForGame(myURI: string){
     let gameResourceURI: string;
-    this.http.get<Game>(this.url + "games/?player_two=" + myURI).subscribe(game => {
-      gameResourceURI = game.resource_uri
-    }) 
-    return gameResourceURI
+    return this.http.get<GameResponse>(this.url + "/api/game/?player_two=" + myURI).pipe(map(res => <Game>res.objects[0]))
+    //return gameResourceURI
   }
 }
 

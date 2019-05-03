@@ -1,12 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable} from '@angular/core';
+import { Observable } from 'rxjs'
 import { HttpClient } from '@angular/common/http';
 import { Game, User } from './models';
+import { map } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameplayService {
-
+  currentGame;
   
   
   constructor(private http: HttpClient) { }
@@ -20,13 +22,14 @@ export class GameplayService {
   //This method is called at the end of a players turn.
   saveGameData(currentGameUri:string, curPlayer, lineOwner:number[], playerLines): void{
     //get game from backend
+    console.log("Saving game data")
     let game: Game
     this.http.get<Game>(this.url+currentGameUri).subscribe(game_returned => {
       this.http.put(this.url + currentGameUri, game_returned);
       game = game_returned
 
       //Changes the game_state array so that the players chosen line is stored.
-      game.line_owner = lineOwner.toString();
+      game.line_owner = "[" +lineOwner.toString() + "]";
 
       //Set lines to current lines
       game.player_one_lines = playerLines[0];
@@ -43,6 +46,17 @@ export class GameplayService {
       console.log("PUTing game")
       this.http.put(this.url + currentGameUri, game).subscribe()
     })
+  }
+  setCurrentGame(gameUri:string){
+    this.currentGame = gameUri;
+  }
+  getCurrentPlayer(gameUri):Observable<string>{
+    return this.getGameData(gameUri).pipe(map(game =>{
+      return game.current_player
+    }))
+  }
+  deleteGame(gameUri:string){
+    this.http.delete(this.url + gameUri).subscribe();
   }
 }
 

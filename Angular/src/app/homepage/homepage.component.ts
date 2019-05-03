@@ -28,10 +28,14 @@ export class HomepageComponent implements OnInit {
       //store user returned from get request
       let userToCheckAgainst:User = res
       //check if the passwords match
-      if (passwordToCheck == userToCheckAgainst.password){
+      if(userToCheckAgainst==undefined){
+
+      }
+      else if (passwordToCheck == userToCheckAgainst.password){
         //if so go to game page
         this.router.navigate(['/game']);
         //and store user as the current user
+        this.userService.user=userToCheckAgainst;
         localStorage.setItem('currentUser',JSON.stringify(userToCheckAgainst))
       }
     });
