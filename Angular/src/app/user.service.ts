@@ -40,13 +40,9 @@ export class UserService {
 
   findUserByUsername(username:string){
     let userToReturn:User;
-<<<<<<< HEAD
     return this.http.get<UserResponse>(this.url + "/api/user/?username="+username).pipe(map(response => response.objects[0]))
     
-=======
-    return this.http.get<UserResponse>(this.url + "?username="+username).pipe(map(response => response.objects[0]))
 
->>>>>>> 712d6db018da405f8c352f46f646149efb4c61f2
   }
 
   getUser(): any {return this.user;}
