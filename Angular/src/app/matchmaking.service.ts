@@ -14,8 +14,9 @@ export class MatchmakingService {
   private url = "http://localhost:8000" // URL to game server.
   currentGame:string;
 
+
   constructor(private http: HttpClient,private userService:UserService,private gameplay:GameplayService ) { }
-  
+
   //This function is called when a player presses the "search for a game" button.
   setupMatch(myURI: string){
     //Looks for an existing player who's lfg is set to 1.
@@ -28,8 +29,9 @@ export class MatchmakingService {
         //then wait for game and once one if found, return it
         return (this.waitForGame(myURI))
       }
-        
-      //if it does find a player, create a match with them
+
+      //If there are other players searching for a game, the player is matched with the first one that is returned from a query.
+
       else{
         console.log("Found opponent")
         //and return the uri of the game we just created
@@ -116,6 +118,6 @@ export class MatchmakingService {
     let gameResourceURI: string;
     return this.http.get<GameResponse>(this.url + "/api/game/?player_two=" + myURI).pipe(map(res => <Game>res.objects[0]))
     //return gameResourceURI
+
   }
 }
-

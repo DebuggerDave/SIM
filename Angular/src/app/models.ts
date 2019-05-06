@@ -10,11 +10,11 @@ export interface GameResponse{
 export interface Game{
   player_one:string,
   player_two:string,
-  line_owner:string,
+  line_owner: any,
   resource_uri: string,
   current_player:string,
-  player_one_lines:string,
-  player_two_lines:string,
+  player_one_lines: any,
+  player_two_lines:any ,
 }
 
 export interface User{

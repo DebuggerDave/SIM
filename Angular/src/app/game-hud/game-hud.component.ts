@@ -17,12 +17,15 @@ export class GameHUDComponent implements OnInit {
   isPlaying = false;
   waiting = true;
 
-
-  
+  currentPlayer:User;
+  loggedIn: boolean = false;
 
   constructor(private matchmaking:MatchmakingService, private gameplay:GameplayService,private userService:UserService) { }
 
+
   ngOnInit() {
+    this.currentPlayer= JSON.parse(localStorage.getItem('currentUser'));
+    this.loggedIn = JSON.parse(localStorage.getItem('loggedIn'));
   }
 
   // button click event, start game. Red starts first

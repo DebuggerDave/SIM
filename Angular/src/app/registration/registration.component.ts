@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { USERS } from '../../db';
 import { FormControl } from '@angular/forms';
+import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
+
 
 @Component({
   selector: 'app-registration',
@@ -12,7 +14,7 @@ export class RegistrationComponent implements OnInit {
   username = new FormControl('');
   password = new FormControl('');
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -24,5 +26,6 @@ export class RegistrationComponent implements OnInit {
                 wins: 0,
                 losses: 0,
                 rank: null});
+    this.router.navigate(['/login']);
   }
 }
