@@ -1,11 +1,11 @@
 # SIM
 A multiplayer online version of the paper and pen game [SIM](https://en.wikipedia.org/wiki/Sim_(pencil_game))  
 Written by 4 classmates and I at NDSU  
-[Steven Karschnia](https://github.com/steven-karschnia)
-[Taylor Schmidt](https://github.com/Taylor-Schmidt-NDSU)
-[Me](https://github.com/DavSchwartz)
-[Spencer Fjelstad](https://github.com/PixPanz)
-[William Deeken](https://github.com/wdeeken7)
+[Steven Karschnia](https://github.com/steven-karschnia)  
+[Taylor Schmidt](https://github.com/Taylor-Schmidt-NDSU)  
+[Me](https://github.com/DavSchwartz)  
+[Spencer Fjelstad](https://github.com/PixPanz)  
+[William Deeken](https://github.com/wdeeken7)  
 
 I wrote the majority of the game mechanics and let's all thank Taylor for doing the whole backend
 
