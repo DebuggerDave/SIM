@@ -10,11 +10,11 @@ Written by 4 classmates and I at NDSU
 I wrote the majority of the game mechanics and let's all thank Taylor for doing the whole backend
 
 ## Users to login as (password same as username)
-Will
-Taylor
-David
-Stephen
-Steve
+Will  
+Taylor  
+David  
+Stephen  
+Steve  
 
 ## How to run
 Download python  
